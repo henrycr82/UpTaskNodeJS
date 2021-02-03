@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scala=1.0")
+		meta(http-equiv="X-UA-Compatible" content="ie=edge")
+		style
+			include ./email.css
+	body
+		h2 Confirmar Cuenta
+		p !Hola!
+		p Usted recibió este correo electrónico porque recibimos una solicitud de creación de una cuenta de usuario en Uptask.
+		p Haga click en el siguiente enlace para confirmar su cuenta.
+		a(href=`${confirmarUrl}`) Ir a Confirmar Cuenta
+		p Este enlace es temporal, así que si se vence vuelve a solicitarlo.
+		p Si no puedes acceder a este enlace visite #{confirmarUrl}
+		p Si usted no solicitó una solicitud de creación de una cuenta de usuario en Uptask, puede ignorar este mensaje.

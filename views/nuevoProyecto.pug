@@ -1,0 +1,16 @@
+extends layout
+
+include mixins/crearEditarProyecto
+
+block contenido
+	.contenido-principal
+		h1 #{nombrePagina}
+
+		//- errores es un arreglo que contiene los errores que se pueden presentar al momento de insertar un proyecto. 
+		// viene del controlador proyectosController.js
+
+		if errores
+			each error in errores
+				.alerta= error.texto
+		//Usamos el mixin
+		+crearEditarProyecto(proyecto)

@@ -1,0 +1,50 @@
+extends layout
+
+block contenido
+	.contenido-principal
+		h1 #{nombrePagina} - #{proyecto.nombre}
+
+		//Formulario
+		//agregar-tarea y campo son estilos
+		form.agregar-tarea(action=`/proyecto/${proyecto.url}` method="POST")
+			.campo
+				label(for="tarea") Tarea:
+				input.nombre-tarea(type="text" name="tarea" placeholder="Nombre Tarea")
+			.campo.enviar
+				input.boton.nueva-tarea(type="submit" value="Agregar")
+		
+		//vardump es una función que se la añadí al proyecto en index.js
+		//pre= vardump(proyecto);
+		//Tareas (listado-pendientes,li.tarea,.acciones) son estilos
+		//far.fa-check-circle, far.fa-check-circle.completo, i.fas.fa-trash  iconos de fontawesome
+		//tareas es la variable que paso desdeel controlador proyectosController
+		//data-tarea atributo de html5
+		.listado-pendientes
+			ul
+				if tareas.length
+					each tarea in tareas
+						li.tarea(data-tarea=tarea.id)
+							p=tarea.tarea
+							.acciones
+								if tarea.estado
+									i.far.fa-check-circle.completo
+								else
+									i.far.fa-check-circle
+								i.fas.fa-trash
+				else
+					p No hay tareas en este proyecto 
+
+		//Acciones
+		//
+		// Avance del Proyecto
+		// .avance .barra-avance .porcentaje estilo
+		// #barra-avance .porcentaje ID
+		.avance
+			h2 Avance del Proyecto
+			#barra-avance.barra-avance
+				#porcentaje.porcentaje
+
+		//#eliminar-proyecto = id del botón 
+		.contenedor-acciones
+			a(href=`/proyecto/editar/${proyecto.id}` class="boton") Editar proyecto
+			button#eliminar-proyecto(data-proyecto-url=proyecto.url type="button" class="boton eliminar") Eliminar Proyecto

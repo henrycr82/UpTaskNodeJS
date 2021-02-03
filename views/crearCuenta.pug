@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		include partials/header
+	body.login
+		// estilos (login, contenedor-formulario, campo, caja, caja-login, enviar)
+		// ID formulario
+		.contenedor-formulario
+			h1 Crear tu cuenta en UpTask
+
+			//Manejo de errores
+			//if (errores)
+				//each error in errores
+					//p.error.alerta=error.message
+			//local.mensajes viene del index.js
+			//mensajes viene del controlador usuariosController
+			if locals.mensajes
+				.alertas
+					each categoria in Object.keys(locals.mensajes)
+						each error in mensajes[categoria]
+							.alerta(class=`${categoria}`)
+								p= error
+
+			// email y password vienen del controlador usuariosController
+			// y los usamos para que cuando la página tenga algún error en 
+			// alguno de esos campos (email y password) el contenido del
+			// campo que no tenga errores no se borre
+			
+			form#formulario.caja.caja-login(method="POST" action="/crear-cuenta")
+				.campo
+					label(for="email") E-mail:
+					input(type="email" name="email" placeholder="E-mail" required value= email)
+				.campo
+					label(for="password") Password:
+					input(type="password" name="password" placeholder="Password" required value= password)
+				.campo.enviar
+					input.boton(type="submit" value="Crear Cuenta")
+				.campo.acciones
+					a(href="/iniciar-sesion") Iniciar Sesión

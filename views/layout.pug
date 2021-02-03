@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		include partials/header
+	body
+		header.barra
+			h1 UpTask - Administrador de Proyectos
+			a(href="/cerra-sesion") Cerrar Sesión
+
+		main.contenedor
+			aside.contenedor-proyectos
+				.panel.crear-proyecto
+					a(href="/nuevo-proyecto" class="boton") Nuevo Proyecto
+						span +
+				.panel.lista-proyectos
+					h2 Proyectos
+					<!-- ul con un id y una clase llamada 'proyectos' -->
+					ul#proyectos.proyectos
+						<!-- proyectos viene del controlador proyectosController.js -->
+						if(proyectos)
+							if(proyectos.length)
+								each proyecto in proyectos
+									li
+										a(href = `/proyectos/${proyecto.url}`)= proyecto.nombre 
+
+			block contenido
+
+		script(src="/dist/bundle.js")
+
+			<!-- vardump es una función que se la añadi al proyecto en index.js -->
+			<!-- esta función (vardump) recibe un objeto y me permite hacer su  -->
+			<!-- respectivo  vardump tipo php -->
+			<!-- cuando imprimo un local (response.locals.vardump por ejemplo) dentro de una vista -->
+			<!-- no requiero  de request ni response antes del nombre de la variable-->
+			<!-- si esta variable la imprimiera en un controlador, tendria acceso a ella de la siguiente forma-->
+			<!-- response.locals.vardump -->
+			<!-- pre= vardump(proyectos) -->

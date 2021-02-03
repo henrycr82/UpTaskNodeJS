@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+html(lang="en")
+	head
+		include partials/header
+	body.login
+		// estilos (login, contenedor-formulario, campo, caja-login, enviar, acciones)
+		.contenedor-formulario
+			h1= nombrePagina
+			p Agrega tu e-mail para restablecer el password
+			//local.mensajes viene del index.js
+			//mensajes viene del controlador authController
+			if locals.mensajes
+				.alertas
+					each categoria in Object.keys(locals.mensajes)
+						each error in mensajes[categoria]
+							.alerta(class=`${categoria}`)
+								p= error
+			// email (value=email) viene del controlador authController
+			// y los usamos para que cuando la página tenga algún error en 
+			// el campo (email) el contenido del campo no se borre
+			form.caja-login(method="POST" action="/restablecer")
+				.campo
+					label(for="email") E-mail:
+					input(type="email" name="email" placeholder="E-mail" required value=email)
+				.campo.enviar
+					input.boton(type="submit" value="Restablecer Password")
+				.campo.acciones
+					a(href="/iniciar-sesion") Ya recorder el Password, Volver a Iniciar Sesión
+
+					
