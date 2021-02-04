@@ -12,8 +12,8 @@ if (process.env.NODE_ENV==='dev') {
 	process.env.HOST='localhost';
 } else {
     //urlDB=process.env.MONGO_URI;//process.env.MONGO_URI variable de entorno personalizadas Heroku para laurl de conexión de producción
-	process.env.BD='bmv9bfa9jjztxzlsbpdt';
-	process.env.USUARIO='ujghevgwwr1jpkre';
-	process.env.PASSWORD='iE4Jq2PHISyaOjIz2UTe';
-	process.env.HOST='bmv9bfa9jjztxzlsbpdt-mysql.services.clever-cloud.com';
+	process.env.BD=process.env.DB_MYSQL;
+	process.env.USUARIO=process.env.MYSQL_USUARIO;
+	process.env.PASSWORD=process.env.MYSQL_PASSWORD;
+	process.env.HOST=process.env.MYSQL_HOST;
 }
